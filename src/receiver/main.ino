@@ -37,7 +37,7 @@ float pan_current = 90;
 
 const byte pan_limit_1 = 0;
 const byte pan_limit_2 = 180;
-const byte tilt_limit_1 = 65;
+const byte tilt_limit_1 = 95;
 const byte tilt_limit_2 = 115;
 const byte recoil_rest = 135;    // Angle of the servo when at rest
 const byte recoil_pushed = 80;  // Angle the servo need to reach to push the dart
