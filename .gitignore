@@ -1,4 +1,4 @@
 .pio
 .clang_complete
 .gcc-flags.json
-.c_cpp_properties.json
+c_cpp_properties.json
