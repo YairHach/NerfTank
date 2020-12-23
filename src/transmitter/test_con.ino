@@ -39,6 +39,9 @@ struct Data_to_be_sent {
   byte ch5;
   byte ch6;
   byte ch7;
+  byte ch8;
+  byte ch9;
+  byte ch10;
 };
 
 //Create a variable with the structure above and name it sent_data
@@ -48,7 +51,8 @@ Data_to_be_sent sent_data;
 
 void setup()
 {
-
+  Serial.begin(9600);
+  
   radio.begin();
   radio.setAutoAck(false);
   radio.setDataRate(RF24_250KBPS);
@@ -71,32 +75,25 @@ void loop()
 {
   /*If your channel is reversed, just swap 0 to 255 by 255 to 0 below
   EXAMPLE:
-  Normal:    data.ch1 = map( analogRead(A0), 0, 1024, 0, 255);
+  Normal:    data.ch1 = map( analogRead(A0), a0, 1024, 0, 255);
   Reversed:  data.ch1 = map( analogRead(A0), 0, 1024, 255, 0);  */
 
-  
-  
   if (analogRead(A6) < 40) {
-    push_but_counter += 1;
-  }
-  else {
-    push_but_counter = 0;
-  }
+    push_but = 0;
+  }    
 
-  if (push_but_counter  == 5){
-    push_but = 1;
-    push_but_counter = 0;  
-  }
-  else{
-    push_but = 0 ;
-  }
+
   sent_data.ch1 = map( analogRead(A0), 0, 1024, 0, 255); // Left joystick - x
   sent_data.ch2 = map( analogRead(A1), 0, 1024, 0, 255); // Left joystick - y
-  sent_data.ch3 = map( analogRead(A3), 0, 1024, 0, 255); // Right joystick - x
-  sent_data.ch4 = map( analogRead(A4), 0, 1024, 0, 255); // Right joystick - y
-  sent_data.ch5 = digitalRead(4); // Toggle
-  sent_data.ch6 = push_but; // Right joystick push button
-  sent_data.ch7 = digitalRead(2); // Toggle
+  sent_data.ch3 = map( analogRead(A0), 0, 1024, 0, 255); // Left joystick - z
+  sent_data.ch4 = map( analogRead(A3), 0, 1024, 0, 255); // Right joystick - x
+  sent_data.ch5 = map( analogRead(A4), 0, 1024, 0, 255); // Right joystick - y
+  sent_data.ch6 = map( analogRead(A0), 0, 1024, 0, 255); // Right joystick - z
+  sent_data.ch7 = digitalRead(2); // Togggle
+  sent_data.ch8 = digitalRead(3); // Togggle
+  sent_data.ch9 = digitalRead(4); // Togggle
+  sent_data.ch10 = push_but; // Right joystick push button
+  
   
   radio.write(&sent_data, sizeof(Data_to_be_sent));
 }
