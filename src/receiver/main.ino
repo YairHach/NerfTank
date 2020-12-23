@@ -18,6 +18,7 @@
 #include <Arduino.h>
 #include <SPI.h>
 #include <RF24.h>
+#include <nRF24L01.h>
 #include <Servo.h>  //To create PWM signals we need this lybrary
 
 const byte esc_start = 0;
