@@ -12,6 +12,8 @@
     CLK    ->   D13
     MOSI   ->   D11
     MISO   ->   D12
+    
+    Yair is the King of the world
 
 */
 
